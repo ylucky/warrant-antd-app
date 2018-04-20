@@ -9,4 +9,4 @@ npm run build 打包
 <br>
 演示效果图：
 <br/>
-![Image text](https://raw.githubusercontent.com/ylucky/warrant-antd-app/master/Animation.gif)
+![Image text](https://github.com/ylucky/warrant-antd-app/master/Animation.gif)
