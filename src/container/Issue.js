@@ -16,7 +16,10 @@ class Issue extends Component {
       sku:[]
     }
   }
-
+  componentWillMount () {
+    window.scrollTo(0, 0)
+  }
+  
   onReset = () => {
     this.setState({
       issue:{}

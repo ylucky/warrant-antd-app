@@ -96,6 +96,10 @@ const data = {
 }
 
 export default class Detail extends React.Component {
+  componentWillMount () {
+    window.scrollTo(0, 0)
+  }
+
   render () {
     return (
       <div className='detail'>

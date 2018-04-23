@@ -16,6 +16,10 @@ class Pledge extends Component {
       pledge:{}
     }
 
+  componentWillMount(){
+    window.scrollTo(0,0);
+  }
+
      onReset = () => {
        this.setState({
          pledge:{}
