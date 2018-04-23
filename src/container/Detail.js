@@ -96,6 +96,10 @@ const data = {
 }
 
 export default class Detail extends React.Component {
+  constructor (props) {
+    super(props)
+  }
+
   componentWillMount () {
     window.scrollTo(0, 0)
   }

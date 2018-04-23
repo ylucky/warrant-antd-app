@@ -6,8 +6,11 @@ const Item = List.Item
 const data = [];
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
-class Pledge extends Component {
-  state = {
+
+export default class Pledge extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
       files: data,
       multiple: false,
       modal:false,
@@ -15,6 +18,8 @@ class Pledge extends Component {
       date:now,
       pledge:{}
     }
+  }
+  
 
   componentWillMount(){
     window.scrollTo(0,0);
@@ -223,5 +228,3 @@ class Pledge extends Component {
       );
     }
 }
-
-export default Pledge
