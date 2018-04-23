@@ -16,7 +16,7 @@ export default class Nav extends Component {
                 />
           <Navs
             pathUrl='/issue'
-            icoName='fa-sitemap'
+            icoName='fa-sticky-note-o'
             linkName='ISSUE'
             badge
             index='false'

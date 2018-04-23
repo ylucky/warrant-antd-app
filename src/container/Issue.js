@@ -31,6 +31,7 @@ class Issue extends Component {
     }
   handleToggleComplete=(taskId,sku)=>{
     let data = this.state.arrSku
+    console.log(typeof data,sku)
     for (let item of data) {
       if (item.id === taskId) {
         item.sku=sku.sku;
@@ -161,7 +162,7 @@ class Issue extends Component {
           >
           <div className="am-list-item am-input-item am-list-item-middle">
             <label className="am-list-line" htmlFor="borring">
-                <span className="am-input-label am-input-label-5">owner</span>
+                <span className="am-input-label am-input-label-5">Owner</span>
                 <div className="am-input-control">
                     <input id="borring" className="form-input" type="text" name="owner"
                        value={this.state.issue.owner||''} 
@@ -230,7 +231,7 @@ class Issue extends Component {
            <List renderHeader={() => 'Add New Product'} className='my-list' />        
            <WingBlank>
                <Button onClick={this.onAddClick} >
-               <i className="fa fa-plus" ></i>&nbsp;&nbsp;add sku
+               <i className="fa fa-plus" ></i>&nbsp;&nbsp;Add New Product
                </Button>
            </WingBlank>
            <WhiteSpace/>
@@ -240,7 +241,6 @@ class Issue extends Component {
               <IssueSKU id={sku.id}
                 key={sku.id}
                 task={sku.sku}
-                complete={sku.complete}
                 toggleComplete={this.handleToggleComplete}
                 deleteTask={this.handleTaskDelete}
                  />

@@ -1,11 +1,12 @@
 import React from 'react'
-import { NavBar, List, Accordion, WhiteSpace, Modal, Button, WingBlank } from 'antd-mobile'
+import { NavBar, List, Accordion, WhiteSpace, Modal, Button, WingBlank, Toast } from 'antd-mobile'
 import {
   Link
 } from 'react-router-dom'
 
 const Item = List.Item
 const prompt = Modal.prompt
+
 const data = {
   'id': 'ErMrD1j',
   'code': 'W1703021',
@@ -99,7 +100,7 @@ export default class Detail extends React.Component {
     return (
       <div className='detail'>
         <NavBar
-          mode='light'
+          mode='dark'
           leftContent={<i className='fa fa-chevron-left' />}
           onLeftClick={() => { this.props.history.go(-1) }}
         >Detail</NavBar>
@@ -114,22 +115,22 @@ export default class Detail extends React.Component {
           <Item wrap extra={'-'}>Pledge</Item>
           <Item wrap extra={'2018-01-08'}>Creation date</Item>
         </List>
-        <List renderHeader={() => 'SKU Infor'} className='my-list'>
-          <div style={{ marginTop: 10, marginBottom: 10 }}>
-            <Accordion className='my-accordion' onChange={this.onChange}>
-              {
+        <List renderHeader={() => 'SKU Infor'} className='my-list' />
+        <div style={{ marginTop: 10, marginBottom: 10 }}>
+          <Accordion className='my-accordion' onChange={this.onChange}>
+            {
                   data.details.map((detail, index) => <Accordion.Panel key={index} header={'SKU' + (index + 1)} className='pad'>
-                    <List.Item><Item wrap extra={detail.sku}>SKU</Item></List.Item>
-                    <List.Item><Item wrap extra={detail.origin}>Origin</Item></List.Item>
-                    <List.Item><Item wrap extra={detail.shortSpec}>Spec Name</Item></List.Item>
-                    <List.Item><Item wrap extra={detail.amount}>Number Of Pieces</Item></List.Item>
-                    <List.Item><Item wrap extra={detail.unitWeight.value + detail.unitWeight.uom}>Unit weight</Item></List.Item>
-                    <List.Item><Item wrap extra={detail.weight + detail.uom}>Total Weight</Item></List.Item>
+                    <Item wrap extra={detail.sku}>SKU</Item>
+                    <Item wrap extra={detail.origin}>Origin</Item>
+                    <Item wrap extra={detail.shortSpec}>Spec Name</Item>
+                    <Item wrap extra={detail.amount}>Number Of Pieces</Item>
+                    <Item wrap extra={detail.unitWeight.value + detail.unitWeight.uom}>Unit weight</Item>
+                    <Item wrap extra={detail.weight + detail.uom}>Total Weight</Item>
                   </Accordion.Panel>)
                 }
-            </Accordion>
-          </div>
-        </List>
+          </Accordion>
+        </div>
+
         <WhiteSpace size='lg' />
 
         <WingBlank>
@@ -137,12 +138,29 @@ export default class Detail extends React.Component {
             <p className='btn'>PLEDGE</p>
           </Link>
           <WhiteSpace size='lg' />
-          <Button type='primary' onClick={() => prompt('Transfer', 'Recipient address', [
-              { text: 'Cancel' },
-              { text: 'Submit', onPress: value => console.log(`输入的内容:${value}`) }
-          ], 'default', null, ['input your Recipient address'])}
-            >TRANSFER</Button>
+          <Button type='primary' onClick={() => prompt('Transfer', 'please input Recipient address',
+            [
+              {
+                text: 'Close'
+              },
+              {
+                text: 'Submit',
+                onPress: value => new Promise((resolve, reject) => {
+                  if (value) {
+                    resolve(value)
+                    console.log(`value:${value}`)
+                  } else {
+                    reject()
+                    Toast.info('Recipient address is required !!!', 1)
+                    return false
+                  }
+                })
+              }
+            ], 'default', null, ['input your Recipient address'])}
+             >TRANSFER</Button>
+
         </WingBlank>
+
         <WhiteSpace size='lg' />
       </div>
     )

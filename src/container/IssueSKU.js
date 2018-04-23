@@ -7,10 +7,13 @@ export default class IssueSKU extends Component {
     super(props)
     this.deleteTask = this.deleteTask.bind(this)
     this.state = {
-        sku:{
-          unit:'JIN'
-        },
-        errorMsg:null,
+        sku:undefined,
+        origin:undefined,
+        specName:undefined,
+        number:undefined,
+        weight:undefined,
+        unit:'JIN',
+        errorMsg:undefined,
         modal:false
     }
   }
@@ -26,13 +29,14 @@ export default class IssueSKU extends Component {
   }
 
   handleChange = (e) => {
-      this.state.sku[e.target.name] = e.target.value;
+      //this.state.sku[e.target.name] = e.target.value;
       this.setState({
+        [e.target.name]:e.target.value,
         modal:false
       })
   }
 
-  _validate = () => {
+  _validateSKU = () => {
        var constraints = {
            "sku":{ presence: {message:'^sku is required'}},
            "origin":{ presence: {message:'^origin is required'}},
@@ -40,13 +44,13 @@ export default class IssueSKU extends Component {
            "number":{ presence: {message:'^number is required'}},
            "weight":{presence: {message:'^weight is required'}},
          }
-       var sku = this.state.sku;
+       //var sku = this.state.sku;
        var attributes = {
-           "sku":sku.sku,
-           "origin":sku.origin,
-           "specName":sku.specName,
-           "number":sku.number,
-           "weight":sku.weight,
+           "sku":this.state.sku,
+           "origin":this.state.origin,
+           "specName":this.state.specName,
+           "number":this.state.number,
+           "weight":this.state.weight,
        };
        var errors = validate(attributes,constraints);
        if (errors) {
@@ -58,19 +62,19 @@ export default class IssueSKU extends Component {
            return (<div style={{textAlign:'left'}} dangerouslySetInnerHTML={{__html:result}}></div>)
        }
        var newSku = {};
-       newSku.sku = sku.sku;
-       newSku.origin = sku.origin;
-       newSku.specName = sku.specName;
-       newSku.number = sku.number;
-       newSku.weight = sku.weight;
-       newSku.unit = sku.unit;
+       newSku.sku = this.state.sku;
+       newSku.origin = this.state.origin;
+       newSku.specName = this.state.specName;
+       newSku.number = this.state.number;
+       newSku.weight = this.state.weight;
+       newSku.unit = this.state.unit;
        this.newSku = newSku;
        return false;
    }
 
 
    onSubmit = () => {
-     var errorMsg = this._validate();
+     var errorMsg = this._validateSKU();
      if (errorMsg) {
          this.setState({
            modal:true,
@@ -87,14 +91,14 @@ export default class IssueSKU extends Component {
     return(
     <div style={{ marginTop: 10, marginBottom: 10 }}>
         <Accordion id={this.props.id}  defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
-          <Accordion.Panel header={`sku`}>
+          <Accordion.Panel header={`SKU`}>
              
               <div className="am-list-item am-input-item am-list-item-middle">
                 <label className="am-list-line" htmlFor="borring">
                     <span className="am-input-label am-input-label-5">SKU</span>
                     <div className="am-input-control">
                         <input id="borring" className="form-input" type="text" name="sku"
-                           value={this.state.sku.sku||''} 
+                           value={this.state.sku||''} 
                            placeholder="sku is required" 
                            onChange={this.handleChange}/>
                     </div>
@@ -105,7 +109,7 @@ export default class IssueSKU extends Component {
                     <span className="am-input-label am-input-label-5">Origin</span>
                     <div className="am-input-control">
                         <input id="borring" className="form-input" type="text" name="origin"
-                           value={this.state.sku.origin||''} 
+                           value={this.state.origin||''} 
                            placeholder="origin is required" 
                            onChange={this.handleChange}/>
                     </div>
@@ -116,7 +120,7 @@ export default class IssueSKU extends Component {
                     <span className="am-input-label am-input-label-5">SpecName</span>
                     <div className="am-input-control">
                         <input id="borring" className="form-input" type="text" name="specName"
-                           value={this.state.sku.specName||''} 
+                           value={this.state.specName||''} 
                            placeholder="specName is required" 
                            onChange={this.handleChange}/>
                     </div>
@@ -127,7 +131,7 @@ export default class IssueSKU extends Component {
                     <span className="am-input-label am-input-label-5">Number Of Pieces</span>
                     <div className="am-input-control">
                         <input id="borring" className="form-input" type="text" name="number"
-                           value={this.state.sku.number||''} 
+                           value={this.state.number||''} 
                            placeholder="number is required" 
                            onChange={this.handleChange}/>
                     </div>
@@ -138,12 +142,12 @@ export default class IssueSKU extends Component {
                     <span className="am-input-label am-input-label-5">Unit Weight</span>
                     <div className="am-input-control">
                         <input id="borring" className="form-input" type="text" name="weight"
-                           value={this.state.sku.weight||''} 
+                           value={this.state.weight||''} 
                            placeholder="weight is required" 
                            onChange={this.handleChange}/>
                     </div>
                     <div className="am-input-control">
-                        <select className="forss" name="unit" style={{textAlign:'center'}} value={this.state.sku.unit||''}
+                        <select className="forss" name="unit" style={{textAlign:'center'}} value={this.state.unit||''} 
                             onChange={this.handleChange}>
                         <option value='JIN'>&nbsp;&nbsp;JIN</option>
                         <option value='KG'>&nbsp;&nbsp;KG</option>
@@ -162,8 +166,6 @@ export default class IssueSKU extends Component {
               </WingBlank>
               </Accordion.Panel>              
         </Accordion>
-        
-        
 
         <Modal
           visible={this.state.modal}

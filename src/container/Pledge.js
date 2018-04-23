@@ -118,7 +118,7 @@ class Pledge extends Component {
       return (
         <div className="pledge">
         <NavBar
-          mode='light'
+          mode='dark'
           leftContent={<i className='fa fa-chevron-left' />}
           onLeftClick={() => { this.props.history.go(-1) }}
         >Pledge</NavBar>

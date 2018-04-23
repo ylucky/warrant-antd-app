@@ -39,6 +39,14 @@ body {
   line-height: 47px;
 }
 
+.am-navbar{
+  position: fixed;
+  left: 0;
+  top:0;
+  width: 100%;
+  z-index: 100;
+}
+
 .basic .am-list-item{
   min-height: 55px;
 }
@@ -54,6 +62,9 @@ body {
     flex-basis: 56%;
     white-space: normal;
 }
+.detail .am-accordion .am-accordion-item .am-accordion-header{
+  color:#ff5b05;
+}
 
 .pledge .am-list-item .am-input-label.am-input-label-5 {
     white-space: normal;
@@ -63,3 +74,4 @@ body {
     white-space: normal;
     width: 130px;
 }
+
