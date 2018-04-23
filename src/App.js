@@ -21,14 +21,16 @@ const App = () => (
   <Router>
     <div>
       <Nav />
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/issue' component={ISSUE} />
-        <Route path='/warrant' component={Detail} />
-        <Route path='/pledge' component={Pledge} />
-        <Route path='/my' component={My} />
-        <Route component={NoMatch} />
-      </Switch>
+      <div className='container'>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/issue' component={ISSUE} />
+          <Route path='/warrant' component={Detail} />
+          <Route path='/pledge' component={Pledge} />
+          <Route path='/my' component={My} />
+          <Route component={NoMatch} />
+        </Switch>
+      </div>
     </div>
   </Router>
 )

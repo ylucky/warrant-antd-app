@@ -1,53 +1,55 @@
 import React from 'react'
 import { NavBar, WhiteSpace, Carousel, WingBlank, NoticeBar} from 'antd-mobile'
 import List from '../components/List'
+import corn from '../img/corn.jpg'
+import walnut from '../img/walnut.jpg'
+import garlic from '../img/garlic.jpg'
 
+const products = {
+  walnut,
+  corn,
+  garlic
+}
 const data = [
   {
     id: '1',
-    img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
     title: 'Warehouse Receipt：W1803152',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    product: 'corn',
     status: 'pledge',
     total: '69kg'
   },
   {
     id: '2',
-    img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
     title: 'Warehouse Receipt：W1803151',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    product: 'garlic',
     status: '',
     total: '144kg'
   },
   {
     id: '3',
-    img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
     title: 'Warehouse Receipt：W1803153',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    product: 'walnut',
     status: 'pledge',
     total: '144kg'
   },
   {
     id: '4',
-    img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
     title: 'Warehouse Receipt：W1803152',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    product: '',
     status: '',
     total: '144kg'
   },
   {
     id: '5',
-    img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
     title: 'Warehouse Receipt：W1803151',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    product: 'walnut',
     status: 'pledge',
     total: '144kg'
   },
   {
     id: '6',
-    img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
     title: 'Warehouse Receipt：W1803153',
-    des: '不是所有的兼职汪都需要风吹日晒',
+    product: 'corn',
     status: 'pledge',
     total: '144kg'
   }
@@ -70,7 +72,7 @@ const Home = ({ match }) => (
       }
       </Carousel>
       {
-        data.map((data, index) => <List key={data.id} data={data} />)
+        data.map((data, index) => <List key={data.id} data={data} products={products} />)
       }
     </WingBlank>
     <WhiteSpace size='lg' />
